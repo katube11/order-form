@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>注文フォーム</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h2>注文フォーム</h2>
+
+  <label>商品名:
+    <select id="item">
+      <option value="お茶">お茶</option>
+      <option value="コーヒー">コーヒー</option>
+      <option value="水">水</option>
+      <option value="お菓子">お菓子</option>
+    </select>
+  </label><br><br>
+
+  <label>数量:
+    <input type="number" id="quantity" value="1" min="1">
+  </label><br><br>
+
+  <label>職員室:
+    <select id="room">
+      <option value="1年職員室">1年職員室</option>
+      <option value="2年職員室">2年職員室</option>
+      <option value="3年職員室">3年職員室</option>
+      <option value="職員室（本部）">職員室（本部）</option>
+    </select>
+  </label><br><br>
+
+  <button onclick="submitOrder()">注文する</button>
+
+  <script>
+    const GAS_URL = 'https://script.google.com/macros/s/xxxxxxxxxxx/exec'; // ★GASのURLに変更してください
+
+    async function submitOrder() {
+      await liff.init({ liffId: 'YOUR_LIFF_ID' }); // ★あなたのLIFF IDに変更してください
+      const profile = await liff.getProfile();
+
+      const data = {
+        userName: profile.displayName,
+        item: document.getElementById('item').value,
+        quantity: document.getElementById('quantity').value,
+        room: document.getElementById('room').value
+      };
+
+      fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      alert("注文を送信しました！");
+      liff.closeWindow();
+    }
+  </script>
+</body>
+</html>
