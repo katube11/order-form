@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>職員室ドリンク注文</title>
+  <title>注文システム</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
     body {
@@ -39,9 +39,10 @@
 
   <label for="room">職員室</label>
   <select id="room">
-    <option value="1年職員室">1年職員室</option>
-    <option value="2年職員室">2年職員室</option>
-    <option value="3年職員室">3年職員室</option>
+    <option value=">職員室">職員室</option>
+    <option value="生徒指導室">生徒指導室</option>
+    <option value="商業センター室">商業センター室</option>
+    <option value="進路指導室">進路指導室</option>
   </select>
 
   <label for="item">商品名</label>
@@ -58,7 +59,7 @@
   <button onclick="submitOrder()">注文する</button>
 
   <script>
-    const GAS_URL = 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxx/exec'; // ← あなたのGASのURLに置き換えてください
+    const GAS_URL = 'https://katube11.github.io/order-form/'; // ← あなたのGASのURLに置き換えてください
 
     async function submitOrder() {
       await liff.init({ liffId: 'YOUR_LIFF_ID' }); // ← あなたのLIFF IDに置き換えてください
